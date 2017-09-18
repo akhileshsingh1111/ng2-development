@@ -1,5 +1,5 @@
 import {Component, Input, Output, EventEmitter} from '@angular/core'
-
+import {IProject} from './shared/project.model'
 
 @Component({
     selector:'project-thumbnail',
@@ -31,7 +31,7 @@ import {Component, Input, Output, EventEmitter} from '@angular/core'
 })
 
 export class ProjectThumbnailCompenent{
-   @Input() project:any
+   @Input() project:IProject
    someProperty:any = "Project Name"
    @Output() projectClick = new EventEmitter()
 

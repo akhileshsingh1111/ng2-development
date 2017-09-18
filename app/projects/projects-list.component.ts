@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core'
 import { ProjectService } from './shared/project.service'
 import { ToastrService } from '../common/toastr.service'
-
+import {IProject} from './shared/project.model'
 @Component({
   selector: 'projects-list',
   template: `<div>
@@ -15,7 +15,7 @@ import { ToastrService } from '../common/toastr.service'
 })
 
 export class ProjectsListComponent implements OnInit {
-  projects: any[]
+  projects: IProject[]
   constructor(private projectService: ProjectService, private toastr: ToastrService) {
 
   }

@@ -21,6 +21,7 @@ var create_project_component_1 = require("./projects/create-project.component");
 var project_details_component_1 = require("./projects/project-details/project-details.component");
 var routes_1 = require("./routes");
 var _404_component_1 = require("./errors/404.component");
+var auth_service_1 = require("./user/auth.service");
 var AppModule = (function () {
     function AppModule() {
     }
@@ -38,7 +39,9 @@ AppModule = __decorate([
             project_details_component_1.ProjectDetailsComponent,
             create_project_component_1.CreateProjectComponent,
             _404_component_1.Error404Component],
-        providers: [project_service_1.ProjectService, toastr_service_1.ToastrService],
+        providers: [project_service_1.ProjectService, toastr_service_1.ToastrService,
+            auth_service_1.AuthService
+        ],
         bootstrap: [mercer_app_component_1.MercerAppComponent]
     }),
     __metadata("design:paramtypes", [])

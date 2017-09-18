@@ -11,6 +11,7 @@ import { CreateProjectComponent } from './projects/create-project.component'
 import { ProjectDetailsComponent } from './projects/project-details/project-details.component'
 import { appRoutes } from './routes'
 import { Error404Component } from './errors/404.component'
+import { AuthService } from './user/auth.service'
 @NgModule({
     imports: [BrowserModule,
         RouterModule.forRoot(appRoutes)
@@ -22,7 +23,9 @@ import { Error404Component } from './errors/404.component'
         ProjectDetailsComponent,
         CreateProjectComponent,
         Error404Component],
-    providers: [ProjectService, ToastrService],
+    providers: [ProjectService, ToastrService,
+        AuthService
+    ],
 
     bootstrap: [MercerAppComponent]
 })

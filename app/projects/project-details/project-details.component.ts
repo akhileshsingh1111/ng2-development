@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {ProjectService} from '../shared/project.service'
 import {ActivatedRoute} from '@angular/router'
+import {IProject} from '../shared/project.model'
 @Component({
 templateUrl: '/app/projects/project-details/project-details.component.html',
 styles: [`
@@ -11,7 +12,7 @@ styles: [`
 })
 
 export class ProjectDetailsComponent implements OnInit{
-    project: any
+    project: IProject
 constructor(private projectService: ProjectService, private route:ActivatedRoute){
 
 }
