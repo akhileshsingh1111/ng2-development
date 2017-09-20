@@ -19,12 +19,22 @@ var ProjectDetailsComponent = (function () {
     ProjectDetailsComponent.prototype.ngOnInit = function () {
         this.project = this.projectService.getProject(+this.route.snapshot.params['id']);
     };
+    ProjectDetailsComponent.prototype.addSession = function () {
+        this.addMode = true;
+    };
+    ProjectDetailsComponent.prototype.saveNewSession = function (session) {
+        var maxId = Math.max.apply(null, this.project.sessions.map(function (s) { return s.id; }));
+        session.id = maxId + 1;
+        this.project.sessions.push(session);
+        this.projectService.updateProject(this.project);
+        this.addMode = false;
+    };
     return ProjectDetailsComponent;
 }());
 ProjectDetailsComponent = __decorate([
     core_1.Component({
         templateUrl: '/app/projects/project-details/project-details.component.html',
-        styles: ["\n    .container {padding-left:20px; padding-right:20px;}\n    .project-image {height: 200px;}\n    "
+        styles: ["\n    .container {padding-left:20px; padding-right:20px;}\n    .project-image {height: 200px;}\n    a {cursor:pointer}\n    "
         ]
     }),
     __metadata("design:paramtypes", [project_service_1.ProjectService, router_1.ActivatedRoute])

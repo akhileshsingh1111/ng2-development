@@ -19,9 +19,12 @@ var project_service_1 = require("./projects/shared/project.service");
 var toastr_service_1 = require("./common/toastr.service");
 var create_project_component_1 = require("./projects/create-project.component");
 var project_details_component_1 = require("./projects/project-details/project-details.component");
+var create_session_component_1 = require("./projects/project-details/create-session.component");
+var session_list_component_1 = require("./projects/project-details/session-list.component");
 var routes_1 = require("./routes");
 var _404_component_1 = require("./errors/404.component");
 var auth_service_1 = require("./user/auth.service");
+var forms_1 = require("@angular/forms");
 var AppModule = (function () {
     function AppModule() {
     }
@@ -30,7 +33,9 @@ var AppModule = (function () {
 AppModule = __decorate([
     core_1.NgModule({
         imports: [platform_browser_1.BrowserModule,
-            router_1.RouterModule.forRoot(routes_1.appRoutes)
+            router_1.RouterModule.forRoot(routes_1.appRoutes),
+            forms_1.FormsModule,
+            forms_1.ReactiveFormsModule
         ],
         declarations: [mercer_app_component_1.MercerAppComponent,
             projects_list_component_1.ProjectsListComponent,
@@ -38,7 +43,10 @@ AppModule = __decorate([
             navbar_component_1.NavBarComponent,
             project_details_component_1.ProjectDetailsComponent,
             create_project_component_1.CreateProjectComponent,
-            _404_component_1.Error404Component],
+            _404_component_1.Error404Component,
+            create_session_component_1.CreateSessionComponent,
+            session_list_component_1.SessionListComponent
+        ],
         providers: [project_service_1.ProjectService, toastr_service_1.ToastrService,
             auth_service_1.AuthService
         ],

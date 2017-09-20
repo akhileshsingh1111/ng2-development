@@ -9,7 +9,15 @@ export class ProjectService
 getProject(id:number): IProject{
     return projects.find(x => x.id === id)
 }
-    
+    saveProject(project){
+      project.id=111
+      project.session = []
+      projects.push(project)
+    }
+    updateProject(project){
+      let index = projects.findIndex(x => x.id= project.id)
+      projects[index] = project
+    }
 }
 
 const projects : IProject[]= [

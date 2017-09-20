@@ -18,6 +18,15 @@ var ProjectService = (function () {
     ProjectService.prototype.getProject = function (id) {
         return projects.find(function (x) { return x.id === id; });
     };
+    ProjectService.prototype.saveProject = function (project) {
+        project.id = 111;
+        project.session = [];
+        projects.push(project);
+    };
+    ProjectService.prototype.updateProject = function (project) {
+        var index = projects.findIndex(function (x) { return x.id = project.id; });
+        projects[index] = project;
+    };
     return ProjectService;
 }());
 ProjectService = __decorate([

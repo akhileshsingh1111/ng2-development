@@ -10,10 +10,17 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 };
 var core_1 = require("@angular/core");
 var router_1 = require("@angular/router");
+var project_service_1 = require("./shared/project.service");
 var CreateProjectComponent = (function () {
-    function CreateProjectComponent(router) {
+    function CreateProjectComponent(router, projectService) {
         this.router = router;
+        this.projectService = projectService;
     }
+    CreateProjectComponent.prototype.saveProject = function (formValues) {
+        console.log(formValues);
+        this.projectService.saveProject(formValues);
+        this.router.navigate(['/projects']);
+    };
     CreateProjectComponent.prototype.cancel = function () {
         this.router.navigate(['/projects']);
     };
@@ -21,9 +28,10 @@ var CreateProjectComponent = (function () {
 }());
 CreateProjectComponent = __decorate([
     core_1.Component({
-        template: "\n        <h1>Create New Project</h1>\n    <hr>\n    <div class=\"col-md-6\">\n    <h3>[Create Event Form up here]</h3>\n    <br/>\n    <br/>\n    <button type=\"submit\" class=\"btn btn-primary\">Save</button>\n    <button type=\"button\" (click)=\"cancel()\" class=\"btn btn-default\">Cancel</button>\n    </div>\n\n    "
+        templateUrl: 'app/projects/create-project.component.html',
+        styles: ["\n  em { float:right; color:#E05C65; padding-left:10px}\n  .error input{background-color:#E3C3C5}\n  .error ::-moz-placeholder {color: #999;}\n  .error :-moz-placeholder {color: #999;}\n  "]
     }),
-    __metadata("design:paramtypes", [router_1.Router])
+    __metadata("design:paramtypes", [router_1.Router, project_service_1.ProjectService])
 ], CreateProjectComponent);
 exports.CreateProjectComponent = CreateProjectComponent;
 //# sourceMappingURL=create-project.component.js.map
