@@ -1,14 +1,13 @@
 import { Component, OnInit } from '@angular/core'
 import { ProjectService } from './shared/project.service'
-import { ToastrService } from '../common/toastr.service'
-import {IProject} from './shared/project.model'
+import { IProject } from './shared/project.model'
 @Component({
   selector: 'projects-list',
   template: `<div>
     <h2>Upcoming mercer projects</h2>
   <div class="row">
   <div *ngFor="let project of projects"  class="col-mod-5">
-  <project-thumbnail (click)= "handleThumbnailClick(project.name)" [project]="project"></project-thumbnail>
+  <project-thumbnail [project]="project"></project-thumbnail>
   </div>
   </div>
 </div>`
@@ -16,17 +15,12 @@ import {IProject} from './shared/project.model'
 
 export class ProjectsListComponent implements OnInit {
   projects: IProject[]
-  constructor(private projectService: ProjectService, private toastr: ToastrService) {
+  constructor(private projectService: ProjectService) {
 
   }
 
   ngOnInit() {
     this.projects = this.projectService.getPojects()
   }
-  //handleClickedProject(data) {
-  //  console.log("Received", data)
-  // }
-  handleThumbnailClick(projectName) {
-    this.toastr.success(projectName)
-  }
+
 }

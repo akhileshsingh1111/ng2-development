@@ -16,6 +16,8 @@ import { SessionListComponent } from './session-list.component'
 export class ProjectDetailsComponent implements OnInit {
     project: IProject
     addMode : Boolean
+    filterBy: string ='all'
+    sortBy: string ='votes'
     constructor(private projectService: ProjectService, private route: ActivatedRoute) {
 
     }

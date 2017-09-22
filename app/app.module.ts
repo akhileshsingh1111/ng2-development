@@ -6,7 +6,10 @@ import { ProjectsListComponent } from './projects/projects-list.component'
 import { ProjectThumbnailCompenent } from './projects/project-thumbnail.component'
 import { NavBarComponent } from './nav/navbar.component'
 import { ProjectService } from './projects/shared/project.service'
-import { ToastrService } from './common/toastr.service'
+import { TOASTR_TOKEN , Toastr} from './common/toastr.service'
+import { SimpleModalComponent} from './common/simplemodal.component'
+import { ModalTriggerDirective} from './common/modal-trigger.directive'
+import { JQ_TOKEN} from './common/jquery.service'
 import { CreateProjectComponent } from './projects/create-project.component'
 import { ProjectDetailsComponent } from './projects/project-details/project-details.component'
 import { CreateSessionComponent } from './projects/project-details/create-session.component'
@@ -15,11 +18,14 @@ import { appRoutes } from './routes'
 import { Error404Component } from './errors/404.component'
 import { AuthService } from './user/auth.service'
 import { FormsModule, ReactiveFormsModule } from '@angular/forms'
+import {DurationPipe} from './projects/shared/duration.pipe'
+declare let toastr : Toastr
+declare let jQuery : object
 @NgModule({
     imports: [BrowserModule,
         RouterModule.forRoot(appRoutes),
         FormsModule,
-        ReactiveFormsModule
+        ReactiveFormsModule 
     ],
     declarations: [MercerAppComponent,
         ProjectsListComponent,
@@ -29,10 +35,18 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms'
         CreateProjectComponent,
         Error404Component,
         CreateSessionComponent,
-        SessionListComponent
-    ],
-    providers: [ProjectService, ToastrService,
+        SessionListComponent,
+        DurationPipe,
+        SimpleModalComponent,
+        ModalTriggerDirective
+    ], 
+    providers: [ProjectService,
+         {provide: TOASTR_TOKEN, useValue:toastr},
+         {provide: JQ_TOKEN, useValue:jQuery},
         AuthService
+       //Another way of registring a service in DI
+       //Also we can use 'useExisting' and 'useFactory'
+        // ,{provide:AuthService, useClass:AuthService}
     ],
 
     bootstrap: [MercerAppComponent]

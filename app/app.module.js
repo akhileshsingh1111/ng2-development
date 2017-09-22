@@ -17,6 +17,9 @@ var project_thumbnail_component_1 = require("./projects/project-thumbnail.compon
 var navbar_component_1 = require("./nav/navbar.component");
 var project_service_1 = require("./projects/shared/project.service");
 var toastr_service_1 = require("./common/toastr.service");
+var simplemodal_component_1 = require("./common/simplemodal.component");
+var modal_trigger_directive_1 = require("./common/modal-trigger.directive");
+var jquery_service_1 = require("./common/jquery.service");
 var create_project_component_1 = require("./projects/create-project.component");
 var project_details_component_1 = require("./projects/project-details/project-details.component");
 var create_session_component_1 = require("./projects/project-details/create-session.component");
@@ -25,6 +28,7 @@ var routes_1 = require("./routes");
 var _404_component_1 = require("./errors/404.component");
 var auth_service_1 = require("./user/auth.service");
 var forms_1 = require("@angular/forms");
+var duration_pipe_1 = require("./projects/shared/duration.pipe");
 var AppModule = (function () {
     function AppModule() {
     }
@@ -45,9 +49,14 @@ AppModule = __decorate([
             create_project_component_1.CreateProjectComponent,
             _404_component_1.Error404Component,
             create_session_component_1.CreateSessionComponent,
-            session_list_component_1.SessionListComponent
+            session_list_component_1.SessionListComponent,
+            duration_pipe_1.DurationPipe,
+            simplemodal_component_1.SimpleModalComponent,
+            modal_trigger_directive_1.ModalTriggerDirective
         ],
-        providers: [project_service_1.ProjectService, toastr_service_1.ToastrService,
+        providers: [project_service_1.ProjectService,
+            { provide: toastr_service_1.TOASTR_TOKEN, useValue: toastr },
+            { provide: jquery_service_1.JQ_TOKEN, useValue: jQuery },
             auth_service_1.AuthService
         ],
         bootstrap: [mercer_app_component_1.MercerAppComponent]

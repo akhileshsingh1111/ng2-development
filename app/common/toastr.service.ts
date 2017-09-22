@@ -1,18 +1,11 @@
-import {Injectable} from '@angular/core'
+import {OpaqueToken} from '@angular/core'
 
-declare let toastr: any
-@Injectable()
-export class ToastrService{
-success(message: string , tittle?: string){
-    toastr.success(message, tittle)
-}
-info(message: string , tittle?: string){
-    toastr.info(message, tittle)
-}
-warning(message: string , tittle?: string){
-    toastr.warning(message, tittle)
-}
-error(message: string , tittle?: string){
-    toastr.error(message, tittle)
-}
+export let TOASTR_TOKEN = new OpaqueToken('toastr');
+
+export interface Toastr{
+    success(msg: string , title?: string) : void;
+    info(msg: string , title?: string) : void;
+    warning(msg: string , title?: string) : void;
+    error(msg: string , title?: string) : void;
+
 }

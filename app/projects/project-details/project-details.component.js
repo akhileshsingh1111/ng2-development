@@ -15,6 +15,8 @@ var ProjectDetailsComponent = (function () {
     function ProjectDetailsComponent(projectService, route) {
         this.projectService = projectService;
         this.route = route;
+        this.filterBy = 'all';
+        this.sortBy = 'votes';
     }
     ProjectDetailsComponent.prototype.ngOnInit = function () {
         this.project = this.projectService.getProject(+this.route.snapshot.params['id']);

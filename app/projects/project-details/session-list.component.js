@@ -11,13 +11,39 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 var core_1 = require("@angular/core");
 var SessionListComponent = (function () {
     function SessionListComponent() {
+        this.visibleSession = [];
     }
+    SessionListComponent.prototype.ngOnChanges = function () {
+        if (this.sessions) {
+            this.filterSessions(this.filterBy);
+            this.sortBy === 'name' ? this.visibleSession.sort(sortByName) : this.visibleSession.sort(sortByVotes);
+        }
+    };
+    SessionListComponent.prototype.filterSessions = function (filter) {
+        var _this = this;
+        if (this.filterBy === 'all') {
+            return this.visibleSession = this.sessions.slice(0);
+        }
+        else {
+            this.visibleSession = this.sessions.filter(function (session) {
+                return session.level.toLocaleLowerCase() === _this.filterBy;
+            });
+        }
+    };
     return SessionListComponent;
 }());
 __decorate([
     core_1.Input(),
     __metadata("design:type", Array)
 ], SessionListComponent.prototype, "sessions", void 0);
+__decorate([
+    core_1.Input(),
+    __metadata("design:type", String)
+], SessionListComponent.prototype, "filterBy", void 0);
+__decorate([
+    core_1.Input(),
+    __metadata("design:type", String)
+], SessionListComponent.prototype, "sortBy", void 0);
 SessionListComponent = __decorate([
     core_1.Component({
         selector: 'session-list',
@@ -26,4 +52,17 @@ SessionListComponent = __decorate([
     __metadata("design:paramtypes", [])
 ], SessionListComponent);
 exports.SessionListComponent = SessionListComponent;
+function sortByName(s1, s2) {
+    if (s1.name > s2.name) {
+        return 1;
+    }
+    else if (s1.name === s2.name) {
+        return 0;
+    }
+    else
+        return -1;
+}
+function sortByVotes(s1, s2) {
+    return s2.voters.length - s1.voters.length;
+}
 //# sourceMappingURL=session-list.component.js.map

@@ -10,10 +10,20 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 };
 var core_1 = require("@angular/core");
 var auth_service_1 = require("../user/auth.service");
+var project_service_1 = require("../projects/shared/project.service");
 var NavBarComponent = (function () {
-    function NavBarComponent(auth) {
+    function NavBarComponent(auth, projectService) {
         this.auth = auth;
+        this.projectService = projectService;
+        this.searchTerm = "";
     }
+    NavBarComponent.prototype.searchSessions = function (searchTerm) {
+        var _this = this;
+        this.projectService.searchSessions(searchTerm).subscribe(function (sessions) {
+            _this.foundSessions = sessions;
+            console.log(sessions);
+        });
+    };
     return NavBarComponent;
 }());
 NavBarComponent = __decorate([
@@ -22,7 +32,7 @@ NavBarComponent = __decorate([
         templateUrl: 'app/nav/navbar.component.html',
         styles: ["\n    nav.navbar-nav{font-size:15px;}\n    #searchForm {margin-right: 100px;}\n    li > a.active {color: #F97924}\n    "]
     }),
-    __metadata("design:paramtypes", [auth_service_1.AuthService])
+    __metadata("design:paramtypes", [auth_service_1.AuthService, project_service_1.ProjectService])
 ], NavBarComponent);
 exports.NavBarComponent = NavBarComponent;
 //# sourceMappingURL=navbar.component.js.map

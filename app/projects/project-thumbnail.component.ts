@@ -5,15 +5,15 @@ import {IProject} from './shared/project.model'
     selector:'project-thumbnail',
     template: `
     <div [routerLink] ="['/projects', project?.id]" class="well hoverwell thumbnail">
-    <h2>{{project?.name}}</h2>
-    <div>Date : {{project?.date}}</div>
+    <h2>{{project?.name | uppercase}}</h2>
+    <div>Date : {{project?.date | date:'shortDate'}}</div>
     <div [ngClass]="getStartTimeClass()" [ngSwitch]="project?.time">
     Time : {{project?.time}}
     <span *ngSwitchCase="'8:00 am'">(Early Start)</span>
     <span *ngSwitchCase="'10:00 am'">(Late Start)</span>
     <span *ngSwitchDefault>(Normal Start)</span>
     </div>
-    <div>Price: \${{project?.price}}</div>
+    <div>Project Cost: {{project?.price | currency:'USD':true}}</div>
     <div *ngIf="project?.location">
     <span>Location : {{project?.location?.address}}</span>
     

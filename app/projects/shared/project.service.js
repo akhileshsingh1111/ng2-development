@@ -27,6 +27,23 @@ var ProjectService = (function () {
         var index = projects.findIndex(function (x) { return x.id = project.id; });
         projects[index] = project;
     };
+    ProjectService.prototype.searchSessions = function (searchTerm) {
+        var term = searchTerm.toLocaleLowerCase();
+        var results = [];
+        projects.forEach(function (project) {
+            var matchedSessions = project.sessions.filter(function (session) {
+                return session.name.toLocaleLowerCase().indexOf(term) > 1;
+            });
+            matchedSessions = matchedSessions.map(function (session) {
+                session.projectId = project.id;
+                return session;
+            });
+            results = results.concat(matchedSessions);
+        });
+        var emitter = new core_1.EventEmitter(true);
+        setTimeout(function () { emitter.emit(results); }, 100);
+        return emitter;
+    };
     return ProjectService;
 }());
 ProjectService = __decorate([

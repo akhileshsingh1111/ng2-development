@@ -10,29 +10,21 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 };
 var core_1 = require("@angular/core");
 var project_service_1 = require("./shared/project.service");
-var toastr_service_1 = require("../common/toastr.service");
 var ProjectsListComponent = (function () {
-    function ProjectsListComponent(projectService, toastr) {
+    function ProjectsListComponent(projectService) {
         this.projectService = projectService;
-        this.toastr = toastr;
     }
     ProjectsListComponent.prototype.ngOnInit = function () {
         this.projects = this.projectService.getPojects();
-    };
-    //handleClickedProject(data) {
-    //  console.log("Received", data)
-    // }
-    ProjectsListComponent.prototype.handleThumbnailClick = function (projectName) {
-        this.toastr.success(projectName);
     };
     return ProjectsListComponent;
 }());
 ProjectsListComponent = __decorate([
     core_1.Component({
         selector: 'projects-list',
-        template: "<div>\n    <h2>Upcoming mercer projects</h2>\n  <div class=\"row\">\n  <div *ngFor=\"let project of projects\"  class=\"col-mod-5\">\n  <project-thumbnail (click)= \"handleThumbnailClick(project.name)\" [project]=\"project\"></project-thumbnail>\n  </div>\n  </div>\n</div>"
+        template: "<div>\n    <h2>Upcoming mercer projects</h2>\n  <div class=\"row\">\n  <div *ngFor=\"let project of projects\"  class=\"col-mod-5\">\n  <project-thumbnail [project]=\"project\"></project-thumbnail>\n  </div>\n  </div>\n</div>"
     }),
-    __metadata("design:paramtypes", [project_service_1.ProjectService, toastr_service_1.ToastrService])
+    __metadata("design:paramtypes", [project_service_1.ProjectService])
 ], ProjectsListComponent);
 exports.ProjectsListComponent = ProjectsListComponent;
 //# sourceMappingURL=projects-list.component.js.map
